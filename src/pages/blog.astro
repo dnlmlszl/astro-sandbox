@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+
+interface Frontmatter {
+  title: string;
+  slug: string;
+  author: string;
+  thumbnail: string;
+  date: string;
+}
+
+const posts = await Astro.glob<Frontmatter>("./post/*.md");
+---
+
+<Layout title="Blog">
+  <main class="mx-auto max-w-screen-lg">
+    <h1 class="text-4xl text-blue-700 font-bold mt-24">Blog</h1>
+    <p class="mt-2.5 text-gray-600">
+      I'm baby put a bird on it bespoke VHS small batch. Hella artisan tofu
+      coloring book asymmetrical. Pabst letterpress truffaut intelligentsia
+      paleo brunch.
+    </p>
+    <section class="grid grid-cols-3 gap-4 mt-12">
+      {
+        posts
+          .sort(
+            (a, b) =>
+              Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+          )
+          .map((post) => (
+            <Card
+              title={post.frontmatter.title}
+              description={`${post.rawContent().slice(0, 100)}...`}
+              href={`/post/${post.frontmatter.slug}`}
+              author={post.frontmatter.author}
+              thumbnail={post.frontmatter.thumbnail}
+              date={new Date(post.frontmatter.date).toLocaleDateString()}
+            />
+          ))
+      }
+    </section>
+  </main>
+</Layout>

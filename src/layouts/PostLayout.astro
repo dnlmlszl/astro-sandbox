@@ -1,0 +1,36 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    slug: string;
+    author: string;
+    thumbnail: string;
+    date: string;
+  };
+}
+
+const { frontmatter } = Astro.props as Props;
+---
+
+<Layout title={frontmatter.title}>
+<main class="max-w-screen-md mx-auto">
+    <h1 class="text-4xl text-blue-700 text-bold mt-16 mb-8">
+        {frontmatter.title}
+    </h1>
+    <small class="text-lg text-gray-700">
+       by <span class="font-bold">{frontmatter.author}</span> on: {new Date(frontmatter.date).toLocaleDateString()}
+    </small>
+    <img src={frontmatter.thumbnail} alt={frontmatter.title} class="aspect-[12/9] mt-8 rounded-t-lg object-cover shadow-xl">
+    <article class="mt-8">
+            <slot />
+    </article>
+</main>
+</Layout>
+
+<style is:global>
+        p {
+                @apply mt-4 text-gray-800
+        }
+</style>

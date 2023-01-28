@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  author: string;
+  thumbnail: string;
+  date: string;
+}
+const { title, description, href, author, thumbnail, date } =
+  Astro.props as Props;
+---
+
+<article class="rounded-lg border border-gray-200">
+  <img
+    src={thumbnail}
+    alt="image"
+    class="aspect-video rounded-t-lg object-cover"
+  />
+  <div class="py-3.5 px-5">
+    <a href={href} class="block my-2.5 text-blue-700 hover:text-blue-800"
+      ><h2 class="text-xl font-bold text-blue-700">{title}</h2></a
+    >
+
+    <div class="flex items-center divide-x divide-gray-300">
+      <div class="flex items-center space-x-1 px-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+          ></path>
+        </svg>
+        <p class="text-sm pb-2.5">{author}</p>
+      </div>
+      <div class="flex items-center space-x-1 px-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+          ></path>
+        </svg>
+        <p class="text-sm pb-2.5">{date}</p>
+      </div>
+    </div>
+
+    <p class="mt-2.5 text-gray-800">
+      {description}
+    </p>
+    <a
+      href={href}
+      class="block mt-3.5 text-blue-700 hover:text-blue-800 hover:underline hover:underline-offset-2"
+      >Read more...</a
+    >
+  </div>
+</article>

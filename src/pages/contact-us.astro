@@ -1,0 +1,17 @@
+---
+import ContactUsForm from "../components/ContactUsForm";
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout title="Contact Us">
+    <main class="mx-auto max-w-screen-md mt-24">
+        <h1 class="text-blue-700 text-4xl font-bold mt-24">Contact Us</h1>
+        <p class="mt-2.5 text-gray-600">
+            I'm baby put a bird on it bespoke VHS small batch. Hella artisan tofu
+            coloring book asymmetrical. Pabst letterpress truffaut intelligentsia
+            paleo brunch.
+        </p>
+        <ContactUsForm client:visible />
+    </main>
+</Layout>
